@@ -14,10 +14,10 @@ const processResults2CSV = function () {
     'athleteName',
     'athleteID',
     'eventAchievement',
+    'gender',
     'genderFinishPos',
     'club',
     'ageGroup',
-    'gender',
     'numRuns',
     'numVol',
     'ageGrade',
@@ -86,10 +86,10 @@ const processResults2CSV = function () {
           runnerName,
           runnerID,
           runnerAchievement,
+          runnerGender,
           runnerGenderPos,
           runnerClub,
           runnerAgeGroup,
-          runnerGender,
           runnerNoRuns,
           runnerNoVols,
           runnerAgeGrade,
@@ -105,7 +105,7 @@ const processResults2CSV = function () {
 
     //console.log(eventResults);
 
-    // write the file output
+    // write the file output to folder
     fs.writeFile(outputPath, eventResults.join('\r\n'), err => {
       console.log(
         err || eventResults.length + ' results processed to ' + outputPath

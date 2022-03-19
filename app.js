@@ -14,8 +14,8 @@ const processResults2CSV = function () {
     'athleteName',
     'athleteID',
     'eventAchievement',
-    'gender',
-    'genderFinishPos',
+    'sex',
+    'sexFinishPos',
     'club',
     'ageGroup',
     'numRuns',
@@ -45,13 +45,19 @@ const processResults2CSV = function () {
         runnerClub = $(item).attr('data-club') || 'null';
         runnerClub = runnerClub.replace(/,/g, '');
         runnerAgeGroup = $(item).attr('data-agegroup');
-        runnerGender = $(item).attr('data-gender');
+        runnerSex = $(item).attr('data-gender');
         runnerNoRuns = $(item).attr('data-runs');
         runnerNoVols = $(item).attr('data-vols');
         runnerAgeGrade = $(item).attr('data-agegrade');
         runnerAchievement = $(item).attr('data-achievement') || 'null';
         $runnerLink = $(item).find('.Results-table-td--name div a');
         runnerURL = $runnerLink.attr('href') || 'null';
+
+        //correct time format for hh:mm:ss.mse
+        if (runnerTime.length < 6) {
+          runnerTime = '00:' + runnerTime;
+        }
+        runnerTime = runnerTime + '.000';
 
         //set runnerID by removing everything but digits, also handle unknowns
         if (typeof runnerURL !== 'null') {
@@ -61,20 +67,28 @@ const processResults2CSV = function () {
         //null values for unknowns
         if (runnerName == 'Unknown') {
           runnerTime = 'null';
-          runnerGender = 'null';
-          runnerAgeGroup = 'null';
-          runnerNoRuns = 'null';
-          runnerNoVols = 'null';
-          runnerAgeGrade = 'null';
-          runnerID = 'null';
-          runnerURL = 'null';
-          runnderGenderPos = 'null';
+          runnerSex = 'Unknown';
+          runnerAgeGroup = 'Unknown';
+          runnerNoRuns = 'Unknown';
+          runnerNoVols = 'Unknown';
+          runnerAgeGrade = 'Unknown';
+          runnerID = 'Unknown';
+          runnerURL = 'Unknown';
+          runnderSexPos = 'Unknown';
         } else {
-          // gender position
-          runnerGenderPos = $(item)
+          // position
+          runnerSexPos = $(item)
             .find('.Results-table-td--gender :not(.compact)')
             .text();
-          runnerGenderPos = runnerGenderPos.replace(/\D+/, '');
+          runnerSexPos = runnerSexPos.replace(/\D+/, '');
+        }
+
+        // Swapping gender for Sex (as is used in age groups)
+        if (runnerSex == 'Male') {
+          runnerSex = 'M';
+        }
+        if (runnerSex == 'Female') {
+          runnerSex = 'W';
         }
 
         //add data to a csv row
@@ -86,8 +100,8 @@ const processResults2CSV = function () {
           runnerName,
           runnerID,
           runnerAchievement,
-          runnerGender,
-          runnerGenderPos,
+          runnerSex,
+          runnerSexPos,
           runnerClub,
           runnerAgeGroup,
           runnerNoRuns,

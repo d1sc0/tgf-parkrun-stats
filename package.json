@@ -1,0 +1,9 @@
+{
+  "name": "tgf-parkrun-stats",
+  "version": "1.1.0",
+  "description": "Converting parkrun HTML event results for the Great Field into a single CSV file from ready for analysis",
+  "main": "app.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10"
+  }
+}

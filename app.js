@@ -15,13 +15,13 @@ const processResults2CSV = function () {
     'athleteID',
     'eventAchievement',
     'genderFinishPos',
-    'Club',
-    'AgeGroup',
-    'Gender',
-    'NumRuns',
-    'NumVol',
-    'AgeGrade',
-    'runnerURL',
+    'club',
+    'ageGroup',
+    'gender',
+    'numRuns',
+    'numVol',
+    'ageGrade',
+    'athleteURL',
   ];
   eventResults.push(result.join(','));
 

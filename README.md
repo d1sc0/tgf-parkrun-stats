@@ -13,7 +13,7 @@ this will generate a single csv of the results into './output.csv'
 
 ## To-do list
 
-- pull in GenderPos - done
+- pull in specific finish position for men and women - done
+- do some processing and create additonal output file for volunteers
 - maybe add a json output option
-- look to add volunteers into another file
 - maybe look to do something clever with athlete data.
